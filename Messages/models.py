@@ -1,3 +1,9 @@
 from django.db import models
+from Users.models import MyUser
 
-# Create your models here.
+
+class Chat(models.Model):
+    members = models.ManyToManyField(MyUser)
+
+    def __str__(self):
+        return ", ".join(p.username for p in self.members.all())
