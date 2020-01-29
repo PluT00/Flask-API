@@ -1,5 +1,4 @@
 from django.db import models
-from .get_username import get_username
 from Users.models import MyUser
 
 
@@ -18,6 +17,3 @@ class Message(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.DO_NOTHING, blank=True)
     datetime = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        self.author = get_username().user
-        super(Message, self).save(*args, **kwargs)
