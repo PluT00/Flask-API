@@ -9,7 +9,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
 
 class ChatSerializer(serializers.ModelSerializer):
-    messages = MessageSerializer(many=True)
+    messages = MessageSerializer(many=True, required=False)
 
     class Meta:
         model = Chat
