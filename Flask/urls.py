@@ -20,10 +20,15 @@ from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from Users.views import UserViewSet
 from Messages.views import ChatViewSet, MessageAPIView
+from Posts.views import PostViewSet
 
 router = DefaultRouter()
+# Users app register.
 router.register(r'users', UserViewSet)
+# Messages app register.
 router.register(r'chats', ChatViewSet, 'chats-list')
+#Posts app register.
+router.register(r'posts', PostViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
