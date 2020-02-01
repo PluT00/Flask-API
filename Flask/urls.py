@@ -34,6 +34,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/chats/<int:pk>/post_message/', MessageAPIView.as_view()),
-    path('api/posts/<int:pk>/post_message/', CommentAPIView.as_view()),
+    path('api/posts/<int:pk>/post_comment/', CommentAPIView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
