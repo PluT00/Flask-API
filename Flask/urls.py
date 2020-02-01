@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from Users.views import UserViewSet
 from Messages.views import ChatViewSet, MessageAPIView
-from Posts.views import PostViewSet
+from Posts.views import PostViewSet, CommentAPIView
 
 router = DefaultRouter()
 # Users app register.
