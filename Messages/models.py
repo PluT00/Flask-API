@@ -17,3 +17,5 @@ class Message(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.DO_NOTHING, blank=True)
     datetime = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-datetime']
