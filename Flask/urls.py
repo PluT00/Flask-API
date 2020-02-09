@@ -35,7 +35,7 @@ router.register(r'posts', PostViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/chats/<int:pk>/post_message/', MessageAPIView.as_view()),
+    path('api/chats/<int:pk>/messages/', MessageAPIView.as_view()),
     path('api/posts/<int:pk>/post_comment/', CommentAPIView.as_view()),
     path('openapi', get_schema_view(
         title="Flask Social Network",
