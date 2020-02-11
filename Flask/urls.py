@@ -18,8 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+
 from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 from Users.views import UserViewSet
 from Messages.views import ChatViewSet, MessageAPIView
 from Posts.views import PostViewSet, CommentAPIView
@@ -34,9 +37,15 @@ router.register(r'posts', PostViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # API root.
     path('api/', include(router.urls)),
+    # JWTAuthentication urls.
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # Applications urls.
     path('api/chats/<int:pk>/messages/', MessageAPIView.as_view()),
     path('api/posts/<int:pk>/post_comment/', CommentAPIView.as_view()),
+    # SwaggerUI docs urls.
     path('openapi', get_schema_view(
         title="Flask Social Network",
         description="API for Flask"
