@@ -23,13 +23,11 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from Users.views import UserViewSet
+from Users.views import UserListAPIView, CreateUserAPIView, UserDetailAPIView
 from Messages.views import ChatViewSet, MessageAPIView
 from Posts.views import PostViewSet, CommentAPIView
 
 router = DefaultRouter()
-# Users app register.
-router.register(r'users', UserViewSet)
 # Messages app register.
 router.register(r'chats', ChatViewSet, 'chats-list')
 #Posts app register.
@@ -43,6 +41,9 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # Applications urls.
+    path('api/users/', UserListAPIView.as_view()),
+    path('api/users/<int:pk>/', UserDetailAPIView.as_view()),
+    path('api/users/create/', CreateUserAPIView.as_view()),
     path('api/chats/<int:pk>/messages/', MessageAPIView.as_view()),
     path('api/posts/<int:pk>/post_comment/', CommentAPIView.as_view()),
     # SwaggerUI docs urls.
