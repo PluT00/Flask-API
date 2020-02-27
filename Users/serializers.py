@@ -11,13 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
             email = validated_data['email'],
             first_name = validated_data['first_name'],
             last_name = validated_data['last_name'],
-            country = validated_data['country'],
-            city = validated_data['city'],
-            bio = validated_data['bio'],
-            avatar = validated_data['avatar']
         )
         user.set_password(validated_data['password'])
-        user.friends.set(validated_data['friends'])
         user.save()
         return user
 
