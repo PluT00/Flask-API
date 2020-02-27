@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import MyUser
 
 
@@ -26,15 +27,3 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = (
             'is_active', 'is_staff', 'last_login', 'is_superuser', 'date_joined'
         )
-        extra_kwargs = {
-            'username': {'required': True},
-            'password': {'required': True},
-            'email': {'required': True},
-            'first_name': {'required': True},
-            'last_name': {'required': True},
-            'country': {'required': False},
-            'city': {'required': False},
-            'bio': {'required': False},
-            'avatar': {'required': False},
-            'friends': {'required': False},
-        }
