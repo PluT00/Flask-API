@@ -1,8 +1,15 @@
 import React from 'react'
+import {BrowserRouter as Router} from 'react-router-dom'
+import {useRoutes} from './routes'
 
 function App() {
+  const routes = useRoutes(false)
   return (
-    <div>Hello</div>
+    <div className='container'>
+      <Router>
+        {routes}
+      </Router>
+    </div>
   )
 }
 
