@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {useHttp} from "../hooks/http.hook";
+import {useHttp} from "../hooks/http.hook"
+import {NavLink} from "react-router-dom"
 
 export const AuthPage = () => {
   const {loading, error, request} = useHttp()
@@ -14,7 +15,6 @@ export const AuthPage = () => {
   const authHandler = async () => {
     try {
       const data = await request('/api/token/', 'POST', {...form})
-      console.log(data)
     } catch (e) {}
   }
 
@@ -25,7 +25,7 @@ export const AuthPage = () => {
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <input
-                  type="username"
+                  name="username"
                   className="form-control"
                   id="username"
                   placeholder="Enter username"
@@ -35,6 +35,7 @@ export const AuthPage = () => {
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
+                  name="password"
                   type="password"
                   className="form-control"
                   id="password"
@@ -50,6 +51,7 @@ export const AuthPage = () => {
             >
               Login
             </button>
+            <NavLink to="/register" className="btn btn-secondary mx-3">Register</NavLink>
           </form>
         </div>
       </div>
