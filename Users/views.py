@@ -15,6 +15,7 @@ class CreateUserAPIView(CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+
 class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = MyUser.objects.all()
     serializer_class = UserSerializer

@@ -21,7 +21,6 @@ from django.views.generic import TemplateView
 
 from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from Users.views import UserListAPIView, CreateUserAPIView, UserDetailAPIView
 from Messages.views import ChatViewSet, MessageAPIView
@@ -38,8 +37,6 @@ urlpatterns = [
     # API root.
     path('api/', include(router.urls)),
     # JWTAuthentication urls.
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # Applications urls.
     path('api/users/', UserListAPIView.as_view()),
     path('api/users/<int:pk>/', UserDetailAPIView.as_view()),
