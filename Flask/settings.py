@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'Users',
     'Messages',
     'Posts',
@@ -138,6 +140,24 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
 }
+
+
+#JWTAuthentication settings.
+
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+    'Users.utils.custom_jwt_response_payload_handler',
+
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
+
+CORS_ALLOW_CREDENTIALS = True
